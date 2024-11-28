@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Larsseit';
+  src: url('../public/Larsseit-Regular.ttf');
+}
+@font-face {
+  font-family: 'Larsseit Medium';
+  src: url('../public/Larsseit-Medium.ttf');
+}
+@font-face {
+  font-family: 'Larsseit Bold';
+  src: url('../public/Larsseit-Bold.ttf');
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: "Larsseit", "Helvetica Neue", sans-serif; }
+
+.mat-toolbar.mat-primary {
+  background-color: rgb(238, 166, 17);;
+}
+
+.logo-wrapper {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  border-radius: 8px;
+  max-width: 208px;
+}
