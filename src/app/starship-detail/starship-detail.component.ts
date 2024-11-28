@@ -58,8 +58,8 @@ export class StarshipDetailComponent implements OnInit {
 
       this.starshipDetailData$ = this.starshipService.getStarshipById(starshipId).pipe(
         take(1),
-        map((data: any): Starship => {
-          return data as Starship;
+        map((data: Starship): Starship => {
+          return data;
         })
       )
     });
