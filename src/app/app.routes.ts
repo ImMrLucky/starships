@@ -13,7 +13,7 @@ export const routes: Routes = [
     component: StarshipsComponent,
   },
   {
-    path: 'starship-detail',
+    path: 'starship-detail/:url',
     component: StarshipDetailComponent
   }
 ];

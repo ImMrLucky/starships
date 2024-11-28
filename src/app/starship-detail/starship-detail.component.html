@@ -1,1 +1,42 @@
-<p>starship-detail works!</p>
+<div class="row">
+  <div class="col-md-12 gx-5">
+    <h1>Starship Details</h1>
+  </div>
+</div>
+
+<div class="row" *ngIf="starshipDetailData$ | async as starshipDetailData">
+  <div class="starship-card-container">.
+    <mat-card class="starship-card" appearance="outlined">
+      <mat-card-header>
+        <div mat-card-avatar class="starship-header-image"></div>
+        <mat-card-title>{{ starshipDetailData.name }}</mat-card-title>
+        <mat-card-subtitle>Model: {{ starshipDetailData.model }}</mat-card-subtitle>
+        <mat-card-subtitle>Manufacturer: {{ starshipDetailData.manufacturer }}</mat-card-subtitle>
+      </mat-card-header>
+       <mat-card-content>
+         <div class="row">
+           <div class="col-md-12">
+             Films
+           </div>
+           <div class="col-md-12">
+             <ul class="films-container">
+               <li *ngFor="let film of starshipDetailData['films']">
+                 <a [href]="film" target="_blank">{{ film }}</a>
+               </li>
+             </ul>
+           </div>
+         </div>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button class="share-twitter"><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">SHARE FILM</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></button>
+      </mat-card-actions>
+    <div class="row date-row">
+      <div class="col-md-12 gx-5">
+        <div><span>Date Created:</span> {{ starshipDetailData.created | date:'short'}}</div>
+        <div><span>Date Last Edited:</span> {{ starshipDetailData.edited | date:'short'}}</div>
+      </div>
+    </div>
+    </mat-card>
+  </div>
+</div>

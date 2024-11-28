@@ -1,6 +1,11 @@
 <mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span><img class="logo-wrapper" src="group1001-starships-logo.jpg"/></span>
+  <mat-toolbar-row class="flex-space-between">
+    <span><img class="logo-wrapper" src="group1001-starships-logo.jpg" alt="main logo"/></span>
+    <span [style.cursor]="'pointer'" class="top-nav-link">
+      <button mat-flat-button routerLink="/">View Starships</button>
+    </span>
   </mat-toolbar-row>
 </mat-toolbar>
-<router-outlet />
+<div class="container">
+  <router-outlet />
+</div>

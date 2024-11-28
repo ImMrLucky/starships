@@ -14,10 +14,10 @@ export class StarshipService {
   ) { }
 
   getStarships(): Observable<Starship[]> {
-    return this.http.get<Starship[]>(`${this.baseUrl}/starships/`).pipe(
-      map((res: any) => {
-        return res['results'];
-      })
-    );
+    return this.http.get<Starship[]>(`${this.baseUrl}/starships/`);
+  }
+
+  getStarshipById(id: string): Observable<Starship> {
+    return this.http.get<Starship>(`${this.baseUrl}/starships/${id}`);
   }
 }

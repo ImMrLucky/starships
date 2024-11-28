@@ -1,0 +1,30 @@
+.starship-card-container {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.films-container {
+  list-style: none;
+}
+
+.mat-mdc-card-content {
+  padding-top: 8px;
+  border-top: 1px dashed #29394e;
+  margin-top: 18px;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.date-row {
+  font-size: .7em;
+  span {
+    font-weight: 800;
+  }
+}
+
+.share-twitter {
+  background-color: #4791ef;
+  a {
+    color: #e4e4e4;
+    text-decoration: none;
+  }
+}
