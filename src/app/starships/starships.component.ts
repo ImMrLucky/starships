@@ -7,18 +7,23 @@ import {MatSort} from '@angular/material/sort';
 import {MatInput} from '@angular/material/input';
 import {MatIcon} from '@angular/material/icon';
 import {RouterLink, RouterLinkActive} from '@angular/router';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-starships',
-  imports: [MatTableModule, MatInput, MatIcon, RouterLinkActive, RouterLink],
+  imports: [MatTableModule, MatInput, MatIcon, RouterLinkActive, RouterLink, MatPaginator],
   standalone: true,
   templateUrl: './starships.component.html',
   styleUrl: './starships.component.scss'
 })
 export class StarshipsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('paginator', { static: true }) paginator: MatPaginator;
   starshipData$: Observable<Starship[]>;
   starshipDataSource = new MatTableDataSource<Starship[]>();
+  pageIndex: number = 0;
+  pageSize: number = 10;
+  totalRecords: number;
 
   displayedColumns: string[];
   constructor(
@@ -29,10 +34,12 @@ export class StarshipsComponent implements OnInit {
 
   ngOnInit(): void {
     // take(1) will unsubscribe after first emission
-    this.starshipData$ = this.getStarships().pipe(
+    this.starshipData$ = this.getStarships(this.pageIndex, this.pageSize).pipe(
       take(1),
       map((res: any) => {
         this.starshipDataSource = new MatTableDataSource<Starship[]>(res.results);
+        this.totalRecords = res.count;
+        this.starshipDataSource.paginator = this.paginator;
       })
     ).subscribe();
   }
@@ -46,7 +53,15 @@ export class StarshipsComponent implements OnInit {
     this.starshipDataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  getStarships(): any {
-    return this.starshipService.getStarships();
+  getStarships(pageIndex: number, pageSize: number): any {
+    return this.starshipService.getStarships(pageIndex, pageSize);
+  }
+
+  pageChangeEvent(event: PageEvent) {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.starshipDataSource = this.getStarships(this.pageIndex, this.pageSize).subscribe((res: any) => {
+      this.starshipDataSource = new MatTableDataSource<Starship[]>(res.results);
+    })
   }
 }
